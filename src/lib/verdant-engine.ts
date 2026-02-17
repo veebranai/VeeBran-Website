@@ -63,10 +63,10 @@ Regional Context: Client is from ${region.toUpperCase()}. Adapt the "organic gro
 Industry Context: ${industry || 'General Business'}
  
 Storytelling Hook: "Just as a single seed becomes a thriving forest, your project scope grows into a comprehensive proposal through VeeBran intelligence."`,
-                prompt: `Analyze this project scope and grow a professional VeeBran proposal:`,
+                prompt: `Analyze this project scope and grow a professional VeeBran proposal:
 
                 PROJECT SCOPE(The Seed):
-                    $ { JSON.stringify(projectDetails, null, 2) }
+                    ${JSON.stringify(projectDetails, null, 2)}
 
 KEY GROWTH REQUIREMENTS:
                     - Executive Summary(State the vision of growth and initial impact)
@@ -100,8 +100,8 @@ Write with the power of nature and the precision of technology.`
         const projectName = projectDetails.projectTitle || 'Your Project';
 
         return {
-            executiveSummary: `Just as a single seed becomes a thriving forest, your project with VeeBran represents the start of a significant growth cycle.We propose a comprehensive ${ projectName.toLowerCase() } ecosystem designed to deliver sustainable business impact.`,
-            projectOverview: `This engagement will nurture ${ projectDetails.rawSummary ? 'your current operations' : 'your business' } through a structured, multi - stage growth process, specifically calibrated for the ${ region.toUpperCase() } market ecosystem.`,
+            executiveSummary: `Just as a single seed becomes a thriving forest, your project with VeeBran represents the start of a significant growth cycle.We propose a comprehensive ${projectName.toLowerCase()} ecosystem designed to deliver sustainable business impact.`,
+            projectOverview: `This engagement will nurture ${projectDetails.rawSummary ? 'your current operations' : 'your business'} through a structured, multi - stage growth process, specifically calibrated for the ${region.toUpperCase()} market ecosystem.`,
             objectives: [
                 'Establish deep operational roots for the project',
                 'Achieve measurable ROI bloom within 6 months',
