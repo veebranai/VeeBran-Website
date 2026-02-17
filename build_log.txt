@@ -2,44 +2,35 @@
 > veebran-web@0.1.0 build
 > next build
 
-  Γû▓ Next.js 14.2.3
+ ΓÜá Invalid next.config.mjs options detected: 
+ ΓÜá     Unrecognized key(s) in object: 'turbopack'
+Payload: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.
+ ΓÜá See more info here: https://nextjs.org/docs/messages/invalid-next-config
+   Γû▓ Next.js 15.1.3
+   - Environments: .env.local, .env
 
    Creating an optimized production build ...
- Γ£ô Compiled successfully
-   Linting and checking validity of types ...
-   Collecting page data ...
-   Generating static pages (0/12) ...
-   Generating static pages (3/12) 
-   Generating static pages (6/12) 
-TypeError: Cannot read properties of undefined (reading 'S')
-    at em.exports.eg.exports (E:\VeeBran Website\.next\server\chunks\387.js:16:97856)
-    at E:\VeeBran Website\.next\server\chunks\387.js:20:3985
-    at 7319 (E:\VeeBran Website\.next\server\chunks\387.js:20:4023)
-    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at 2710 (E:\VeeBran Website\.next\server\chunks\387.js:20:20585)
-    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at 1803 (E:\VeeBran Website\.next\server\app\demo\page.js:1:2487)
-    at Object.t [as require] (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at require (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18365)
-    at a (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:88294) {
-  digest: '2482507292'
-}
+Failed to compile.
 
-Error occurred prerendering page "/demo". Read more: https://nextjs.org/docs/messages/prerender-error
+./src/lib/verdant-engine.ts
+Error:   x Unexpected token `SCOPE`. Expected ... , *,  (, [, :, , ?, =, an identifier, public, protected, private, readonly, <.
+    ,-[E:\VeeBran Website\src\lib\verdant-engine.ts:68:1]
+ 65 | Storytelling Hook: "Just as a single seed becomes a thriving forest, your project scope grows into a comprehensive proposal through VeeBran intelligence."`,
+ 66 |                 prompt: `Analyze this project scope and grow a professional VeeBran proposal:`,
+ 67 | 
+ 68 |                 PROJECT SCOPE(The Seed):
+    :                         ^^^^^
+ 69 |                     $ { JSON.stringify(projectDetails, null, 2) }
+ 70 | 
+ 70 | KEY GROWTH REQUIREMENTS:
+    `----
 
-TypeError: Cannot read properties of undefined (reading 'S')
-    at em.exports.eg.exports (E:\VeeBran Website\.next\server\chunks\387.js:16:97856)
-    at E:\VeeBran Website\.next\server\chunks\387.js:20:3985
-    at 7319 (E:\VeeBran Website\.next\server\chunks\387.js:20:4023)
-    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at 2710 (E:\VeeBran Website\.next\server\chunks\387.js:20:20585)
-    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at 1803 (E:\VeeBran Website\.next\server\app\demo\page.js:1:2487)
-    at Object.t [as require] (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
-    at require (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18365)
-    at a (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:88294)
-   Generating static pages (9/12) 
- Γ£ô Generating static pages (12/12)
+Caused by:
+    Syntax Error
 
-> Export encountered errors on following paths:
-	/demo/page: /demo
+Import trace for requested module:
+./src/lib/verdant-engine.ts
+./src/app/api/generate-proposal/route.ts
+
+
+> Build failed because of webpack errors
