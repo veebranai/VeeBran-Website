@@ -1,0 +1,150 @@
+
+> veebran-web@0.1.0 dev
+> next dev
+
+   Γû▓ Next.js 15.1.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.31.7:3000
+   - Environments: .env.local
+
+ Γ£ô Starting...
+ ΓÜá Invalid next.config.mjs options detected: 
+ ΓÜá     Unrecognized key(s) in object: 'turbopack'
+Payload: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.
+ ΓÜá See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ Γ£ô Ready in 1627ms
+ Γùï Compiling / ...
+ Γ£ô Compiled / in 7.8s (1604 modules)
+motion() is deprecated. Use motion.create() instead.
+ HEAD / 200 in 8404ms
+ Γ£ô Compiled in 734ms (779 modules)
+ Γ£ô Compiled in 334ms (779 modules)
+ Γ£ô Compiled in 203ms (779 modules)
+ Γ£ô Compiled in 58ms (268 modules)
+[Error: ENOENT: no such file or directory, stat 'E:\VeeBran Website\.next\cache\webpack\client-development\1.pack.gz'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: 'E:\\VeeBran Website\\.next\\cache\\webpack\\client-development\\1.pack.gz'
+}
+ Γ¿» unhandledRejection: [Error: ENOENT: no such file or directory, stat 'E:\VeeBran Website\.next\cache\webpack\client-development\1.pack.gz'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: 'E:\\VeeBran Website\\.next\\cache\\webpack\\client-development\\1.pack.gz'
+}
+ Γ¿» unhandledRejection:  [Error: ENOENT: no such file or directory, stat 'E:\VeeBran Website\.next\cache\webpack\client-development\1.pack.gz'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: 'E:\\VeeBran Website\\.next\\cache\\webpack\\client-development\\1.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat 'E:\VeeBran Website\.next\cache\webpack\client-development\1.pack.gz'
+ Γùï Compiling /admin/[[...segments]] ...
+ Γ£ô Compiled /admin/[[...segments]] in 6.5s (3662 modules)
+[Γú╖] Pulling schema from database...
+[2K[1G[Γ£ô] Pulling schema from database...
+[23:23:13] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+ Γ¿» Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... config={{...}} dateFNSKey="en-US" fallbackLang=... isNavOpen=... languageCode=... languageOptions=... locale=... permissions=... serverFunction={function serverFunction} switchLanguageServerAction=... theme=... translations=... user=... children=...>
+                                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1508151014'
+}
+ Γ£ô Compiled in 31ms
+ Γ£ô Compiled in 314ms (1214 modules)
+ Γ£ô Compiled in 151ms (1214 modules)
+ Γ¿» ./src/payload.config.ts
+Error: Failed to read source code from E:\VeeBran Website\src\payload.config.ts
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(payload)/layout.tsx
+ Γùï Compiling /_not-found ...
+ Γ¿» ./src/payload.config.ts
+Error: Failed to read source code from E:\VeeBran Website\src\payload.config.ts
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(payload)/layout.tsx
+ Γ¿» ./src/payload.config.ts
+Error: Failed to read source code from E:\VeeBran Website\src\payload.config.ts
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(payload)/layout.tsx
+ HEAD /admin 500 in 2465ms
+ Γ¿» ./src/payload.config.ts
+Error: Failed to read source code from E:\VeeBran Website\src\payload.config.ts
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(payload)/layout.tsx
+ Γ¿» ./src/payload.config.ts
+Error: Failed to read source code from E:\VeeBran Website\src\payload.config.ts
+
+Caused by:
+    The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/payload.config.ts
+./src/app/(payload)/layout.tsx
+ HEAD / 500 in 4048ms
+ GET /admin 500 in 48ms
+ ΓÜá Found a change in next.config.mjs. Restarting the server to apply the changes...
+   Γû▓ Next.js 15.1.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.31.7:3000
+   - Environments: .env.local
+
+ Γ£ô Starting...
+ ΓÜá Invalid next.config.mjs options detected: 
+ ΓÜá     Unrecognized key(s) in object: 'turbopack'
+Payload: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.
+ ΓÜá See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ Γ£ô Ready in 1981ms
+ Γùï Compiling /admin/[[...segments]] ...
+ ΓÜá Found a change in next.config.mjs. Restarting the server to apply the changes...
+   Γû▓ Next.js 15.1.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.31.7:3000
+   - Environments: .env.local
+
+ Γ£ô Starting...
+ ΓÜá Invalid next.config.mjs options detected: 
+ ΓÜá     Unrecognized key(s) in object: 'turbopack'
+Payload: You can safely ignore the "Invalid next.config" warning above. This only occurs on Next.js 15.2.x or lower. We recommend upgrading to the latest supported Next.js version to resolve this warning.
+ ΓÜá See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ Γ£ô Ready in 2.5s
+ Γùï Compiling /admin/[[...segments]] ...
+ Γ£ô Compiled /admin/[[...segments]] in 8.4s (3662 modules)
+[Γú╖] Pulling schema from database...
+[2K[1G[Γ£ô] Pulling schema from database...
+[23:40:34] [33mWARN[39m: [36mNo email adapter provided. Email will be written to console. More info at https://payloadcms.com/docs/email/overview.[39m
+ Γ¿» Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... config={{...}} dateFNSKey="en-US" fallbackLang=... isNavOpen=... languageCode=... languageOptions=... locale=... permissions=... serverFunction={function serverFunction} switchLanguageServerAction=... theme=... translations=... user=... children=...>
+                                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1508151014'
+}
+ HEAD /admin 500 in 13195ms
+ Γ¿» Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  <... config={{...}} dateFNSKey="en-US" fallbackLang=... isNavOpen=... languageCode=... languageOptions=... locale=... permissions=... serverFunction={function serverFunction} switchLanguageServerAction=... theme=... translations=... user=... children=...>
+                                                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1508151014'
+}
+ GET /admin 500 in 284ms
+ Γ£ô Compiled in 840ms (2096 modules)

@@ -1,0 +1,13 @@
+
+> veebran-web@0.1.0 dev
+> next dev
+
+ ΓÜá The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+ ΓÜá Port 3000 is in use by process 46400, using available port 3003 instead.
+   Γû▓ Next.js 15.5.12
+   - Local:        http://localhost:3003
+   - Network:      http://192.168.31.7:3003
+   - Environments: .env.local
+
+ Γ£ô Starting...
+ Γ£ô Ready in 2.9s

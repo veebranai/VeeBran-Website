@@ -1,0 +1,260 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e9]:
+      - link "VeeBran Logo" [ref=e10] [cursor=pointer]:
+        - /url: /
+        - img "VeeBran Logo" [ref=e11]
+      - navigation [ref=e12]:
+        - link "Work" [ref=e13] [cursor=pointer]:
+          - /url: /work
+        - link "Services" [ref=e14] [cursor=pointer]:
+          - /url: /services
+        - link "Company" [ref=e15] [cursor=pointer]:
+          - /url: /company
+        - link "AI Philosophy" [ref=e16] [cursor=pointer]:
+          - /url: /ai
+        - link "Get Started" [ref=e17] [cursor=pointer]:
+          - /url: /contact
+          - generic [ref=e18]: Get Started
+    - generic [ref=e21]:
+      - heading "Building Digital Solutions That Matter" [level=1] [ref=e22]
+      - paragraph [ref=e23]: We empower organizations with AI that turns complex challenges into real-world outcomes.
+      - generic [ref=e24]:
+        - link "Start Your Project" [ref=e25] [cursor=pointer]:
+          - /url: /contact
+        - link "Explore Our Work" [ref=e26] [cursor=pointer]:
+          - /url: /work
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]: 31+
+          - generic [ref=e30]: Projects Delivered
+          - generic [ref=e31]: 🚀
+        - generic [ref=e32]:
+          - generic [ref=e33]: 62+
+          - generic [ref=e34]: Clients Served
+          - generic [ref=e35]: 👥
+        - generic [ref=e36]:
+          - generic [ref=e37]: 62%
+          - generic [ref=e38]: Client Satisfaction
+          - generic [ref=e39]: ⭐
+        - generic [ref=e40]:
+          - generic [ref=e41]: 15/7
+          - generic [ref=e42]: Support Available
+          - generic [ref=e43]: 🕒
+    - generic [ref=e45]:
+      - heading "Our Services" [level=2] [ref=e46]
+      - generic [ref=e47]:
+        - generic [ref=e48] [cursor=pointer]:
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - heading "Product Design" [level=3] [ref=e52]
+              - img [ref=e54]
+            - paragraph [ref=e56]: End-to-end product design—from research and UX flows to polished UI systems and developer-ready handoff.
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Services" [level=4] [ref=e59]
+                - list [ref=e60]:
+                  - listitem [ref=e61]:
+                    - generic [ref=e62]: •
+                    - generic [ref=e63]: User Research & Strategy
+                  - listitem [ref=e64]:
+                    - generic [ref=e65]: •
+                    - generic [ref=e66]: UX Flows & Wireframes
+                  - listitem [ref=e67]:
+                    - generic [ref=e68]: •
+                    - generic [ref=e69]: UI Systems & Prototypes
+                  - listitem [ref=e70]:
+                    - generic [ref=e71]: •
+                    - generic [ref=e72]: Design Ops & Dev Handoff
+              - generic [ref=e73]:
+                - heading "Tools" [level=4] [ref=e74]
+                - generic [ref=e75]:
+                  - generic [ref=e76]: Figma
+                  - generic [ref=e77]: Adobe
+                  - generic [ref=e78]: Sketch
+                  - generic [ref=e79]: InVision
+          - generic [ref=e82]:
+            - generic [ref=e83]: Learn More
+            - generic [ref=e84]: →
+        - generic [ref=e85] [cursor=pointer]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - heading "Development" [level=3] [ref=e89]
+              - img [ref=e91]
+            - paragraph [ref=e93]: Robust, scalable products across web and mobile—from elegant UIs to reliable APIs and automated DevOps.
+            - generic [ref=e94]:
+              - generic [ref=e95]:
+                - heading "Services" [level=4] [ref=e96]
+                - list [ref=e97]:
+                  - listitem [ref=e98]:
+                    - generic [ref=e99]: •
+                    - generic [ref=e100]: Frontend Platforms (React/Next)
+                  - listitem [ref=e101]:
+                    - generic [ref=e102]: •
+                    - generic [ref=e103]: Backend APIs & Microservices (Node)
+                  - listitem [ref=e104]:
+                    - generic [ref=e105]: •
+                    - generic [ref=e106]: Mobile & Cross-platform (Flutter)
+                  - listitem [ref=e107]:
+                    - generic [ref=e108]: •
+                    - generic [ref=e109]: CI/CD & Cloud Ops (Docker)
+              - generic [ref=e110]:
+                - heading "Tools" [level=4] [ref=e111]
+                - generic [ref=e112]:
+                  - generic [ref=e113]: React
+                  - generic [ref=e114]: Node.js
+                  - generic [ref=e115]: Docker
+                  - generic [ref=e116]: Git
+          - generic [ref=e119]:
+            - generic [ref=e120]: Learn More
+            - generic [ref=e121]: →
+        - generic [ref=e122] [cursor=pointer]:
+          - generic [ref=e124]:
+            - generic [ref=e125]:
+              - heading "Strategic Consulting" [level=3] [ref=e126]
+              - img [ref=e128]
+            - paragraph [ref=e130]: Data-driven insights to navigate complex markets and unlock new growth horizons.
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - heading "Services" [level=4] [ref=e133]
+                - list [ref=e134]:
+                  - listitem [ref=e135]:
+                    - generic [ref=e136]: •
+                    - generic [ref=e137]: Market Analysis
+                  - listitem [ref=e138]:
+                    - generic [ref=e139]: •
+                    - generic [ref=e140]: Digital Transformation
+                  - listitem [ref=e141]:
+                    - generic [ref=e142]: •
+                    - generic [ref=e143]: AI Readiness Assessment
+                  - listitem [ref=e144]:
+                    - generic [ref=e145]: •
+                    - generic [ref=e146]: Growth Hacking
+              - generic [ref=e147]:
+                - heading "Tools" [level=4] [ref=e148]
+                - generic [ref=e149]:
+                  - generic [ref=e150]: Python
+                  - generic [ref=e151]: Tableau
+                  - generic [ref=e152]: GPT-4
+                  - generic [ref=e153]: Excel
+          - generic [ref=e156]:
+            - generic [ref=e157]: Learn More
+            - generic [ref=e158]: →
+    - generic [ref=e160]:
+      - heading "Case Studies" [level=2] [ref=e161]
+      - generic [ref=e162]:
+        - generic [ref=e163]:
+          - generic [ref=e165]: 💡
+          - heading "Clinix AI" [level=3] [ref=e166]
+          - paragraph [ref=e167]: AI-powered clinical documentation and coding platform
+          - generic [ref=e168]:
+            - generic [ref=e169]: Web Design
+            - generic [ref=e170]: App Design
+            - generic [ref=e171]: AI Development
+            - generic [ref=e172]: GTM
+        - generic [ref=e173]:
+          - generic [ref=e175]: 💡
+          - heading "Synergies4" [level=3] [ref=e176]
+          - paragraph [ref=e177]: AI-powered business intelligence platform
+          - generic [ref=e178]:
+            - generic [ref=e179]: Web Design
+            - generic [ref=e180]: App Design
+            - generic [ref=e181]: AI Development
+            - generic [ref=e182]: GTM
+        - generic [ref=e183]:
+          - generic [ref=e185]: 💡
+          - heading "Curehire" [level=3] [ref=e186]
+          - paragraph [ref=e187]: Healthcare staffing platform
+          - generic [ref=e188]:
+            - generic [ref=e189]: Web Design
+            - generic [ref=e190]: App Design
+            - generic [ref=e191]: AI Development
+            - generic [ref=e192]: GTM
+    - generic [ref=e194]:
+      - heading "Trusted by Industry Leaders" [level=2] [ref=e195]
+      - generic [ref=e196]:
+        - generic [ref=e198]: Injazat
+        - generic [ref=e200]: LOWE'S
+        - generic [ref=e202]: Cognizant
+        - generic [ref=e204]: Trimple
+        - generic [ref=e206]: e2open
+        - generic [ref=e208]: Toyota
+    - generic [ref=e210]:
+      - heading "We turn bold ideas into powerful digital realities." [level=2] [ref=e211]
+      - paragraph [ref=e212]: Let's work together to create something that matters.
+      - link "Let's Work Together" [ref=e213] [cursor=pointer]:
+        - /url: /contact
+    - generic [ref=e216]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - link "VeeBran Logo" [ref=e219] [cursor=pointer]:
+            - /url: /
+            - img "VeeBran Logo" [ref=e220]
+          - paragraph [ref=e221]: Beyond the Horizon. Next-generation business consulting powered by AI and nature-inspired innovation.
+          - generic [ref=e222]:
+            - link [ref=e223] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e224]
+            - link [ref=e226] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e227]
+            - link [ref=e229] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e230]
+            - link [ref=e233] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e234]
+        - generic [ref=e238]:
+          - heading "Company" [level=4] [ref=e239]
+          - list [ref=e240]:
+            - listitem [ref=e241]:
+              - link "About Us" [ref=e242] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e243]:
+              - link "Our Team" [ref=e244] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e245]:
+              - link "Careers" [ref=e246] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e247]:
+              - link "News" [ref=e248] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e249]:
+          - heading "Services" [level=4] [ref=e250]
+          - list [ref=e251]:
+            - link "Strategy" [ref=e252] [cursor=pointer]:
+              - /url: "#"
+            - link "AI Implementation" [ref=e253] [cursor=pointer]:
+              - /url: "#"
+            - link "Digital Transformation" [ref=e254] [cursor=pointer]:
+              - /url: "#"
+            - link "Analytics" [ref=e255] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e256]:
+          - heading "Stay Ahead" [level=4] [ref=e257]
+          - paragraph [ref=e258]: Subscribe to our newsletter for the latest AI insights.
+          - generic [ref=e259]:
+            - textbox "Enter your email" [ref=e260]
+            - button [ref=e261] [cursor=pointer]:
+              - img [ref=e262]
+      - generic [ref=e264]:
+        - paragraph [ref=e265]: © 2026 VeeBran Consulting. All rights reserved.
+        - generic [ref=e266]:
+          - link "Privacy Policy" [ref=e267] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms of Service" [ref=e268] [cursor=pointer]:
+            - /url: "#"
+  - button [ref=e270] [cursor=pointer]:
+    - img [ref=e271]
+  - status [ref=e273]:
+    - generic [ref=e274]:
+      - img [ref=e276]
+      - generic [ref=e278]:
+        - text: Static route
+        - button "Hide static indicator" [ref=e279] [cursor=pointer]:
+          - img [ref=e280]
+  - alert [ref=e283]
+```

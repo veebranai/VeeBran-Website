@@ -1,0 +1,45 @@
+
+> veebran-web@0.1.0 build
+> next build
+
+  Γû▓ Next.js 14.2.3
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/12) ...
+   Generating static pages (3/12) 
+   Generating static pages (6/12) 
+TypeError: Cannot read properties of undefined (reading 'S')
+    at em.exports.eg.exports (E:\VeeBran Website\.next\server\chunks\387.js:16:97856)
+    at E:\VeeBran Website\.next\server\chunks\387.js:20:3985
+    at 7319 (E:\VeeBran Website\.next\server\chunks\387.js:20:4023)
+    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at 2710 (E:\VeeBran Website\.next\server\chunks\387.js:20:20585)
+    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at 1803 (E:\VeeBran Website\.next\server\app\demo\page.js:1:2487)
+    at Object.t [as require] (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at require (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18365)
+    at a (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:88294) {
+  digest: '2482507292'
+}
+
+Error occurred prerendering page "/demo". Read more: https://nextjs.org/docs/messages/prerender-error
+
+TypeError: Cannot read properties of undefined (reading 'S')
+    at em.exports.eg.exports (E:\VeeBran Website\.next\server\chunks\387.js:16:97856)
+    at E:\VeeBran Website\.next\server\chunks\387.js:20:3985
+    at 7319 (E:\VeeBran Website\.next\server\chunks\387.js:20:4023)
+    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at 2710 (E:\VeeBran Website\.next\server\chunks\387.js:20:20585)
+    at t (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at 1803 (E:\VeeBran Website\.next\server\app\demo\page.js:1:2487)
+    at Object.t [as require] (E:\VeeBran Website\.next\server\webpack-runtime.js:1:127)
+    at require (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18365)
+    at a (E:\VeeBran Website\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:88294)
+   Generating static pages (9/12) 
+ Γ£ô Generating static pages (12/12)
+
+> Export encountered errors on following paths:
+	/demo/page: /demo

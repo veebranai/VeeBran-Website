@@ -1,0 +1,133 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ===== SECURITY: User model with security fields =====
+model User {
+  id                   String    @id @default(cuid())
+  email                String    @unique
+  password             String    // Bcrypt hashed
+  role                 Role      @default(USER)
+  emailVerified        Boolean   @default(false)
+  emailVerificationToken String? @unique
+  emailVerificationExpires DateTime?
+  resetPasswordToken   String?   @unique
+  resetPasswordExpires DateTime?
+  mfaEnabled           Boolean   @default(false)
+  mfaSecret            String?
+  isActive             Boolean   @default(true)
+  lastLoginAt          DateTime?
+  lastLoginIP          String?
+  failedLoginAttempts  Int       @default(0)
+  lockedUntil          DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  
+  // Relations
+  proposals            Proposal[]
+  securityLogs         SecurityLog[]
+  apiKeys              ApiKey[]
+  
+  @@map("users")
+}
+
+// ===== SECURITY: Security log for audit trail =====
+model SecurityLog {
+  id        String   @id @default(cuid())
+  type      String   // LOGIN_SUCCESS, LOGIN_FAILED, PASSWORD_CHANGE, etc.
+  userId    String?
+  ipAddress String
+  userAgent String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+  
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  
+  @@index([userId])
+  @@index([type])
+  @@index([createdAt])
+  @@map("security_logs")
+}
+
+// ===== SECURITY: Proposal model with access control =====
+model Proposal {
+  id              String   @id @default(cuid())
+  title           String
+  clientName      String
+  projectName     String
+  region          String   // continent-specific
+  status          ProposalStatus @default(DRAFT)
+  content         String   // Encrypted at rest
+  quoteAmount     Float
+  currency        String
+  documentUrl     String?  // Supabase Storage URL
+  documentType    String?  // pdf, docx
+  processedBy     String   // AI model used
+  processingTime  Int      // in seconds
+  isPublic        Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Security: Ownership
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([status])
+  @@index([region])
+  @@index([createdAt])
+  @@map("proposals")
+}
+
+// ===== SECURITY: API key model for programmatic access =====
+model ApiKey {
+  id          String   @id @default(cuid())
+  key         String   @unique // Hashed
+  name        String
+  userId      String
+  permissions Json     // Fine-grained permissions
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([isActive])
+  @@map("api_keys")
+}
+
+// ===== SECURITY: Rate limit model =====
+model RateLimit {
+  id          String   @id @default(cuid())
+  identifier  String   // IP or API key
+  endpoint    String
+  windowStart DateTime
+  count       Int      @default(1)
+  
+  @@index([identifier, endpoint, windowStart])
+  @@unique([identifier, endpoint, windowStart])
+  @@map("rate_limits")
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ProposalStatus {
+  DRAFT
+  GENERATED
+  SENT
+  ACCEPTED
+  REJECTED
+  ARCHIVED
+}

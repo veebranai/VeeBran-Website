@@ -1,0 +1,13 @@
+   Γû▓ Next.js 15.5.12
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 115s
+   Linting and checking validity of types ...
+
+> Build error occurred
+[Error: spawn UNKNOWN] {
+  errno: -4094,
+  code: 'UNKNOWN',
+  syscall: 'spawn'
+}

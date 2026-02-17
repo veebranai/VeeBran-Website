@@ -1,0 +1,135 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== CRITICAL: @layer base prevents FOUC on back-navigation ===== */
+@layer base {
+  :root {
+    --brand-dark: #0A0F0D;
+    --brand-green: #2E7D32;
+    --brand-blue: #1565C0;
+    --brand-teal: #00D9A0;
+    --brand-yellow: #FFD54F;
+    --text: #E0E0E0;
+    --text-secondary: #B0B0B0;
+
+    /* Legacy aliases */
+    --vb-green: #2E7D32;
+    --vb-blue: #1565C0;
+    --vb-yellow: #FFD54F;
+    --vb-dark: #0A0F0D;
+    --vb-text: #E0E0E0;
+    --vb-neon: #00D9A0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    background-color: #0A0F0D;
+  }
+
+  body {
+    @apply bg-brand-dark text-white antialiased;
+    font-family: 'Satoshi', var(--font-inter), system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Prevent white flash on Next.js navigation boundaries */
+  #__next,
+  [data-nextjs-scroll-focus-boundary] {
+    background-color: #0A0F0D;
+    min-height: 100vh;
+  }
+
+  /* Typography resets */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: inherit;
+    font-size: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0F0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(46, 125, 50, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 217, 160, 0.6);
+}
+
+/* ===== UTILITIES ===== */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: rgba(10, 15, 13, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 217, 160, 0.5);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 20px rgba(0, 217, 160, 0.15);
+  }
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: rgba(0, 217, 160, 0.3);
+  color: #fff;
+}

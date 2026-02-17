@@ -1,0 +1,5 @@
+
+> veebran-web@0.1.0 generate:types
+> payload generate:types
+
+[23:38:30] [32mINFO[39m: [36mCompiling TS types for Collections and Globals...[39m
