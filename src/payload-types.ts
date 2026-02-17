@@ -75,6 +75,8 @@ export interface Config {
     team: Team;
     faqs: Faq;
     media: Media;
+    posts: Post;
+    careers: Career;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +92,8 @@ export interface Config {
     team: TeamSelect<false> | TeamSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    careers: CareersSelect<false> | CareersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -260,11 +264,61 @@ export interface Page {
  */
 export interface Media {
   id: number;
+  /**
+   * Describe image for screen readers + SEO. Include primary keyword + continent if applicable.
+   */
   alt: string;
   /**
-   * Rich description for AI training data
+   * Contextual caption that answers "Why is this image here?" Target featured snippets.
+   */
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Comprehensive description for AI model training. Explain symbolism, brand connection, and business context.
    */
   detailedDescription?: string | null;
+  /**
+   * Tags that help AI models understand this image's purpose and context
+   */
+  aiTrainingTags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Which continent pages should display this image?
+   */
+  targetContinents?:
+    | ('global' | 'north-america' | 'europe' | 'asia' | 'africa' | 'latin-america' | 'australia')[]
+    | null;
+  /**
+   * Auto-generated JSON-LD for ImageObject schema. (Generated on frontend)
+   */
+  schemaMarkup?: string | null;
+  /**
+   * Pages where this image is currently used (auto-tracked)
+   */
+  usedInPages?:
+    | {
+        pageSlug?: string | null;
+        section?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   license?: ('owned' | 'licensed' | 'cc' | 'public') | null;
   updatedAt: string;
   createdAt: string;
@@ -518,6 +572,81 @@ export interface Team {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  category: 'news' | 'blog' | 'case-study' | 'company';
+  publishedDate?: string | null;
+  heroImage?: (number | null) | Media;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  excerpt?: string | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers".
+ */
+export interface Career {
+  id: number;
+  title: string;
+  department: string;
+  location?: string | null;
+  type?: ('full-time' | 'contract' | 'internship') | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  requirements?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  applicationLink?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -571,6 +700,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'careers';
+        value: number | Career;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -868,7 +1005,23 @@ export interface FaqsSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  caption?: T;
   detailedDescription?: T;
+  aiTrainingTags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  targetContinents?: T;
+  schemaMarkup?: T;
+  usedInPages?:
+    | T
+    | {
+        pageSlug?: T;
+        section?: T;
+        id?: T;
+      };
   license?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -915,6 +1068,37 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  publishedDate?: T;
+  heroImage?: T;
+  content?: T;
+  excerpt?: T;
+  slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "careers_select".
+ */
+export interface CareersSelect<T extends boolean = true> {
+  title?: T;
+  department?: T;
+  location?: T;
+  type?: T;
+  description?: T;
+  requirements?: T;
+  applicationLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,116 +1,76 @@
 
-import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { prisma } from '@/lib/database';
 import { SecurityMiddleware } from '@/lib/database/middleware';
-import { SecurityLogger, SecurityEvent } from '@/lib/security/logger';
+import { prisma } from '@/lib/database';
+import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import { RateLimiter } from '@/lib/security/rate-limiter';
 
-// ===== SECURITY: Input validation schema =====
-const createProposalSchema = z.object({
-    title: z.string().min(3).max(200),
-    clientName: z.string().min(2).max(100),
-    projectName: z.string().min(3).max(200),
-    region: z.enum(['north-america', 'europe', 'asia', 'africa', 'latin-america', 'australia']),
-    documentUrl: z.string().url().optional(),
-    content: z.string().max(10000)
+// Validation Schema
+const ProposalSchema = z.object({
+    title: z.string().min(3),
+    content: z.string().min(10),
+    value: z.number().positive(),
+    clientEmail: z.string().email(),
 });
 
-// ===== SECURITY: Rate limiting configuration =====
-const RATE_LIMIT = {
-    maxRequests: 10,
-    windowSeconds: 60
-};
-
-export async function POST(request: NextRequest) {
+export async function POST(req: Request) {
     try {
-        // ===== SECURITY: Rate limiting =====
-        const ip = request.headers.get('x-forwarded-for') || 'unknown';
-        const rateLimit = await SecurityMiddleware.checkRateLimit(
-            ip,
-            '/api/proposals',
-            RATE_LIMIT.maxRequests,
-            RATE_LIMIT.windowSeconds
-        );
-
-        if (!rateLimit.allowed) {
-            await SecurityLogger.log(SecurityEvent.RATE_LIMIT_HIT, null, { ip, endpoint: '/api/proposals' });
-            return NextResponse.json(
-                { error: 'Too many requests. Please try again later.' },
-                { status: 429, headers: { 'Retry-After': '60' } }
-            );
-        }
-
-        // ===== SECURITY: Authentication =====
+        // 1. Authentication
         const session = await getServerSession(authOptions);
-        if (!session?.user) {
-            return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        if (!session || !session.user) {
+            return new NextResponse('Unauthorized', { status: 401 });
         }
-        const userId = (session.user as any).id;
 
-        // ===== SECURITY: Input validation =====
-        const body = await request.json();
-        const validatedData = createProposalSchema.parse(body);
+        // 2. Rate Limiting
+        const userId = session.user.id;
+        const { allowed } = await RateLimiter.checkUser(userId, 'create_proposal', 10, 60);
+        if (!allowed) {
+            return new NextResponse('Too Many Requests', { status: 429 });
+        }
 
-        // ===== SECURITY: Input sanitization =====
-        const sanitizedData = SecurityMiddleware.sanitizeInput(validatedData);
+        // 3. Validation
+        const body = await req.json();
+        const result = ProposalSchema.safeParse(body);
+        if (!result.success) {
+            return NextResponse.json(result.error, { status: 400 });
+        }
+        const data = result.data;
 
-        // ===== SECURITY: Create proposal with ownership =====
+        // 4. Authorized Access (RBAC/Policy)
+        // Example: Only 'admin' or 'advisor' can create proposals
+        // if (session.user.role !== 'admin') ...
+
+        // 5. Database Transaction (Secure Create)
+        // Using SecurityMiddleware to ensure correct ownership is handled implicitly or checked
         const proposal = await prisma.proposal.create({
             data: {
-                ...sanitizedData,
-                userId: userId,
+                title: SecurityMiddleware.sanitizeInput(data.title),
+                content: SecurityMiddleware.sanitizeInput(data.content), // Basic sanitization
+                value: data.value,
+                clientEmail: data.clientEmail,
+                authorId: userId,
                 status: 'DRAFT',
-                quoteAmount: 0, // Will be calculated by AI engine
-                currency: getCurrencyByRegion(sanitizedData.region)
-            }
+            },
         });
 
-        // ===== SECURITY: Audit log =====
-        await SecurityLogger.log(SecurityEvent.PROPOSAL_CREATED, userId, {
-            proposalId: proposal.id,
-            region: sanitizedData.region,
-            ip
-        });
+        return NextResponse.json(proposal);
 
-        return NextResponse.json({
-            success: true,
-            proposal,
-            rateLimit: {
-                remaining: rateLimit.remaining,
-                resetIn: RATE_LIMIT.windowSeconds
-            }
-        });
-
-    } catch (error) {
-        // ===== SECURITY: Error handling without leaking info =====
-        console.error('Proposal creation error:', error);
-
-        if (error instanceof z.ZodError) {
-            return NextResponse.json(
-                { error: 'Invalid input', details: error.errors },
-                { status: 400 }
-            );
-        }
-
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+    } catch (error: any) {
+        console.error('Proposal Creation Error:', error);
+        return new NextResponse('Internal Server Error', { status: 500 });
     }
 }
 
-// Helper: Get currency by region
-function getCurrencyByRegion(region: string): string {
-    const currencies: Record<string, string> = {
-        'north-america': 'USD',
-        'europe': 'EUR',
-        'asia': 'INR',
-        'africa': 'ZAR',
-        'latin-america': 'BRL',
-        'australia': 'AUD'
-    };
+export async function GET(req: Request) {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return new NextResponse('Unauthorized', { status: 401 });
 
-    return currencies[region] || 'USD';
+    // Secure Data Access: Only fetch user's own proposals
+    const proposals = await prisma.proposal.findMany({
+        where: { authorId: session.user.id }
+    });
+
+    return NextResponse.json(proposals);
 }

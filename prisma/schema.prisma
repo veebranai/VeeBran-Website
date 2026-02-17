@@ -34,7 +34,7 @@ model User {
   securityLogs         SecurityLog[]
   apiKeys              ApiKey[]
   
-  @@map("users")
+  @@map("auth_users")
 }
 
 // ===== SECURITY: Security log for audit trail =====

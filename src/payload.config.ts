@@ -1,11 +1,11 @@
+
 import path from 'path'
 import { buildConfig } from 'payload'
-import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-// Collections
 // Collections
 import { Users } from './collections/Users.ts'
 import { Projects } from './collections/Projects.ts'
@@ -45,10 +45,11 @@ export default buildConfig({
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
     },
-    db: sqliteAdapter({
-        client: {
-            url: process.env.DATABASE_URI || 'file:./payload.db',
+    db: postgresAdapter({
+        pool: {
+            connectionString: process.env.DATABASE_URL || '',
         },
+        schemaName: 'payload',
     }),
     sharp,
 })
