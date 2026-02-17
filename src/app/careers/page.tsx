@@ -9,6 +9,8 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import { Metadata } from "next";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: "Careers | VeeBran",
     description: "Join the VeeBran ecosystem. Help us cultivate the future of AI.",

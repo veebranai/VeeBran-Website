@@ -11,6 +11,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { OptimizedImage } from "@/components/seo/OptimizedImage";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
     title: "News & Insights | VeeBran",
     description: "Latest updates on AI, Marketing, and the VeeBran ecosystem.",
