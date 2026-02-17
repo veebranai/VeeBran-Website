@@ -27,13 +27,13 @@ export function OptimizedImage({
     fill = false
 }: OptimizedImageProps) {
 
+    const [error, setError] = useState(false);
+
     // Handle case where image is just an ID (string)
     if (typeof image === 'string') {
         console.warn("OptimizedImage received ID string instead of Media object. Ensure depth is set or fetch populate.");
         return null; // Or render placeholder
     }
-
-    const [error, setError] = useState(false);
 
     if (!image || !image.url) return null;
 

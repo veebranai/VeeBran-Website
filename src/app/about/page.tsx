@@ -1,11 +1,10 @@
-
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Section } from "@/components/ui/Section";
 import { Container } from "@/components/ui/Container";
 import { Typography } from "@/components/ui/Typography";
 import { ParticleBackground } from "@/components/particles/VeeBranParticleSystem";
-import { OptimizedImage } from "@/components/seo/OptimizedImage"; // Usage of new component
+import { OptimizedImage } from "@/components/seo/OptimizedImage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -60,7 +59,7 @@ export default function AboutPage() {
                                 At VeeBran, we believe that true innovation mimics nature. Just as a forest ecosystem thrives through connection and adaptation, modern businesses must become living, breathing entities capable of real-time evolution.
                             </Typography>
                             <Typography variant="p" className="text-lg">
-                                Our "Visual Intelligence" isn&apos;t just about pretty pictures—it&apos;s about creating interfaces that feel intuitive, organic, and alive.
+                                Our &quot;Visual Intelligence&quot; isn&apos;t just about pretty pictures—it&apos;s about creating interfaces that feel intuitive, organic, and alive.
                             </Typography>
                         </div>
                     </div>

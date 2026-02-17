@@ -145,7 +145,7 @@ export function AiPageClient({ initialRegion }: Props) {
                                     <h4 className="text-lg text-white font-semibold mb-2">{initialRegion.localProof.title}</h4>
                                     <p className="text-gray-400 mb-4">{initialRegion.localProof.desc}</p>
                                     <div className="bg-brand-green/5 p-4 rounded-xl border border-brand-green/10">
-                                        <p className="italic text-gray-300 mb-2">"{initialRegion.localProof.testimonial.quote}"</p>
+                                        <p className="italic text-gray-300 mb-2">&quot;{initialRegion.localProof.testimonial.quote}&quot;</p>
                                         <p className="text-sm text-brand-teal font-bold">— {initialRegion.localProof.testimonial.author}</p>
                                     </div>
                                 </div>

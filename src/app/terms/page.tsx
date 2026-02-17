@@ -1,4 +1,3 @@
-
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Typography } from "@/components/ui/Typography";
@@ -61,7 +60,7 @@ export default function TermsPage() {
 
                         <h3>5. Disclaimer</h3>
                         <p>
-                            Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
+                            Your use of the Service is at your sole risk. The Service is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.
                         </p>
                         <p>
                             VeeBran Consulting its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.

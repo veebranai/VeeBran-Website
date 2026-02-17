@@ -48,9 +48,14 @@ export async function POST(req: Request) {
             data: {
                 title: SecurityMiddleware.sanitizeInput(data.title),
                 content: SecurityMiddleware.sanitizeInput(data.content), // Basic sanitization
-                value: data.value,
-                clientEmail: data.clientEmail,
-                authorId: userId,
+                quoteAmount: data.value,
+                clientName: data.clientEmail, // Using email as name for now
+                projectName: 'Untitled Project', // Default
+                region: 'global', // Default
+                currency: 'USD', // Default
+                processedBy: 'Manual', // Default
+                processingTime: 0, // Default
+                userId: userId,
                 status: 'DRAFT',
             },
         });
@@ -69,7 +74,7 @@ export async function GET(req: Request) {
 
     // Secure Data Access: Only fetch user's own proposals
     const proposals = await prisma.proposal.findMany({
-        where: { authorId: session.user.id }
+        where: { userId: session.user.id }
     });
 
     return NextResponse.json(proposals);

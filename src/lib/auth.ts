@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
                     return null;
                 }
 
-                const isValid = await compare(credentials.password, user.passwordHash);
+                const isValid = await compare(credentials.password, user.password);
 
                 if (!isValid) {
                     await SecurityLogger.log(SecurityEvent.LOGIN_FAILED, user.id, { ip, reason: 'Invalid password' });
@@ -77,7 +77,7 @@ export const authOptions: NextAuthOptions = {
 
                 return {
                     id: user.id,
-                    name: user.name,
+                    name: user.email.split('@')[0], // Schema has no name field
                     email: user.email,
                     role: user.role,
                     mfaEnabled: user.mfaEnabled,

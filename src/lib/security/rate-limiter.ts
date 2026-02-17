@@ -3,10 +3,28 @@ import { Redis } from '@upstash/redis';
 
 // ===== SECURITY: Initialize Redis client =====
 // Use fallback for build time/check
-const redis = new Redis({
-    url: process.env.UPSTASH_REDIS_URL || 'https://mock.upstash.io',
-    token: process.env.UPSTASH_REDIS_TOKEN || 'mock_token'
-});
+// Use lazy initialization to avoid build-time errors
+let redis: Redis | null = null;
+
+function getRedis() {
+    if (redis) return redis;
+    if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
+        redis = new Redis({
+            url: process.env.UPSTASH_REDIS_REST_URL,
+            token: process.env.UPSTASH_REDIS_REST_TOKEN
+        });
+        return redis;
+    }
+    // Also check non-REST keys just in case
+    if (process.env.UPSTASH_REDIS_URL && process.env.UPSTASH_REDIS_TOKEN) {
+        redis = new Redis({
+            url: process.env.UPSTASH_REDIS_URL,
+            token: process.env.UPSTASH_REDIS_TOKEN
+        });
+        return redis;
+    }
+    return null;
+}
 
 export class RateLimiter {
     // ===== SECURITY: Sliding window rate limiting =====
@@ -15,42 +33,50 @@ export class RateLimiter {
         maxRequests: number,
         windowSeconds: number
     ): Promise<{ allowed: boolean; remaining: number; resetIn: number }> {
-        if (!process.env.UPSTASH_REDIS_URL) {
-            // Mock implementation if no Redis
+        const client = getRedis();
+
+        if (!client) {
+            // Mock implementation if no Redis (Build time or misconfigured)
             return { allowed: true, remaining: 100, resetIn: 60 };
         }
 
         const now = Math.floor(Date.now() / 1000);
         const windowStart = now - windowSeconds;
 
-        // Clean old requests
-        await redis.zremrangebyscore(key, 0, windowStart);
+        try {
+            // Clean old requests
+            await client.zremrangebyscore(key, 0, windowStart);
 
-        // Count current requests
-        const count = await redis.zcard(key);
+            // Count current requests
+            const count = await client.zcard(key);
 
-        if (count >= maxRequests) {
-            const oldest = await redis.zrange(key, 0, 0, { withScores: true });
-            // Fix types for oldest
-            const score = (oldest?.[0] as any)?.score || 0;
-            const resetIn = score ? windowSeconds - (now - score) : windowSeconds;
+            if (count >= maxRequests) {
+                const oldest = await client.zrange(key, 0, 0, { withScores: true });
+                // Fix types for oldest
+                const score = (oldest?.[0] as any)?.score || 0;
+                const resetIn = score ? windowSeconds - (now - score) : windowSeconds;
+
+                return {
+                    allowed: false,
+                    remaining: 0,
+                    resetIn: Math.max(1, resetIn)
+                };
+            }
+
+            // Add current request
+            await client.zadd(key, { score: now, member: now.toString() });
+            await client.expire(key, windowSeconds);
 
             return {
-                allowed: false,
-                remaining: 0,
-                resetIn: Math.max(1, resetIn)
+                allowed: true,
+                remaining: maxRequests - count - 1,
+                resetIn: windowSeconds
             };
+        } catch (error) {
+            console.warn("RateLimiter Redis Error:", error);
+            // Fallback to allow if Redis fails
+            return { allowed: true, remaining: 100, resetIn: 60 };
         }
-
-        // Add current request
-        await redis.zadd(key, { score: now, member: now.toString() });
-        await redis.expire(key, windowSeconds);
-
-        return {
-            allowed: true,
-            remaining: maxRequests - count - 1,
-            resetIn: windowSeconds
-        };
     }
 
     // ===== SECURITY: IP-based rate limiting =====
@@ -77,7 +103,8 @@ export class RateLimiter {
 
     // ===== SECURITY: Clear rate limit =====
     static async clear(key: string): Promise<void> {
-        if (!process.env.UPSTASH_REDIS_URL) return;
-        await redis.del(key);
+        const client = getRedis();
+        if (!client) return;
+        await client.del(key);
     }
 }

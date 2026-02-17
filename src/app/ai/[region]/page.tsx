@@ -5,12 +5,13 @@ import { AiPageClient } from '@/components/pages/AiPageClient';
 import { REGION_CONTENT, GLOBAL_SCHEMA } from '@/lib/seo-content';
 
 type Props = {
-    params: { region: string };
+    params: Promise<{ region: string }>;
 };
 
 // 1. Generate Metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const regionData = REGION_CONTENT[params.region];
+    const { region } = await params;
+    const regionData = REGION_CONTENT[region];
 
     if (!regionData) {
         return {
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: regionData.title,
         description: regionData.description,
         alternates: {
-            canonical: `https://veebran.com/ai/${params.region}`,
+            canonical: `https://veebran.com/ai/${region}`,
             languages: Object.entries(REGION_CONTENT).reduce((acc, [key, val]) => {
                 acc[val.hreflang] = `https://veebran.com/ai/${key}`;
                 return acc;
@@ -39,8 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // 2. Server Component for the Region Page
-export default function RegionPage({ params }: Props) {
-    const regionData = REGION_CONTENT[params.region];
+export default async function RegionPage({ params }: Props) {
+    const { region } = await params;
+    const regionData = REGION_CONTENT[region];
 
     if (!regionData) {
         notFound();
