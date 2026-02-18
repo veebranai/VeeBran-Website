@@ -101,7 +101,7 @@ export function AiPageClient({ initialRegion }: Props) {
 
     // Use customized title/claims if initialRegion is provided
     const heroTitle = initialRegion?.title.split(':')[0] || "Stop Losing Bids to Faster Competitors.";
-    const heroDesc = initialRegion?.description || "Your clients demand speed and precision. Manual proposals are costing you deals. Verdant Intelligence automates the strategy, so you can close the sale.";
+    const heroDesc = initialRegion?.description || "Your clients demand speed and precision. Manual proposals are costing you deals. VeeBran Intelligence automates the strategy, so you can close the sale.";
 
     return (
         <main className="min-h-screen bg-brand-dark overflow-x-hidden selection:bg-brand-neon/30">
