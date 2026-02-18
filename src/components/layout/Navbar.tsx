@@ -14,7 +14,7 @@ const navLinks = [
     { name: "Work", href: "/work" },
     { name: "Services", href: "/services" },
     { name: "Company", href: "/company" },
-    { name: "Verdant AI", href: "/ai" },
+    { name: "VeeBran AI", href: "/ai" },
 ];
 
 export function Navbar() {

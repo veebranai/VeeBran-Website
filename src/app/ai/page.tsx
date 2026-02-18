@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     }
 };
 
-export default function VerdantAIPage() {
+export default function VeeBranAIPage() {
     return (
         <>
             <script

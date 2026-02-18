@@ -1,7 +1,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { parseDocument, extractProjectDetails } from '@/lib/document-parser';
-import { VerdantEngine } from '@/lib/verdant-engine';
+import { VeeBranEngine } from '@/lib/veebran-engine';
 import { calculateQuote, detectRegionFromIP } from '@/lib/pricing-engine';
 import { createPDF } from '@/lib/pdf-generator';
 
@@ -45,8 +45,8 @@ export async function POST(request: NextRequest) {
         // Determine region (manual selection overrides auto-detection)
         const region = manualRegion || await detectRegionFromIP();
 
-        // Generate AI proposal using Verdant Engine
-        const proposal = await VerdantEngine.generateProposal(
+        // Generate AI proposal using VeeBran Engine
+        const proposal = await VeeBranEngine.generateProposal(
             projectDetails,
             region,
             projectDetails.industry || 'General Business'
