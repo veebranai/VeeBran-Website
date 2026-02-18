@@ -19,12 +19,25 @@ export const metadata: Metadata = {
 };
 
 export default async function NewsPage() {
-    const payload = await getPayloadHMR({ config: configPromise })
-    const posts = await payload.find({
-        collection: 'posts',
-        limit: 12,
-        sort: '-publishedDate',
-    })
+    let posts;
+    try {
+        const payload = await getPayloadHMR({ config: configPromise })
+        posts = await payload.find({
+            collection: 'posts',
+            limit: 12,
+            sort: '-publishedDate',
+        })
+    } catch (error: any) {
+        return (
+            <div className="min-h-screen bg-vb-dark text-white flex flex-col items-center justify-center p-8">
+                <h1 className="text-3xl font-bold text-red-500 mb-4">News Load Error</h1>
+                <pre className="bg-black/50 p-4 rounded border border-red-500/30 overflow-auto max-w-2xl text-xs">
+                    {JSON.stringify(error, Object.getOwnPropertyNames(error), 2)}
+                </pre>
+                <p className="mt-4 text-gray-400">Please check Vercel Logs for more details.</p>
+            </div>
+        )
+    }
 
     return (
         <main className="relative min-h-screen bg-vb-dark overflow-x-hidden">
